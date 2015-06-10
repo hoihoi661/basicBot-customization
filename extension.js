@@ -48,30 +48,30 @@
             }
         };
         
-        var TGH_rouletteCycleTimer = null;
         bot.commands.rouletteCycle = {
             command: 'roulettecycle',
             rank: 'mod',
             type: 'exact',
+			timer: null,
             functionality: function (chat, cmd) {
                 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                 if (!bot.commands.executable(this.rank, chat)) return void (0);
                 else {
                     function rouletteCycler(){
                         API.sendChat("!roulette");
-                        TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, 30 * 60 * 1000);
+                        this.timer = window.setTimeout(rouletteCycler, 30 * 60 * 1000);
                     }
-                    if(TGH_rouletteCycleTimer != null){
-                        clearTimeout(TGH_rouletteCycleTimer);
-                        TGH_rouletteCycleTimer = null;
+                    if(this.timer != null){
+                        clearTimeout(this.timer);
+                        this.timer = null;
                         API.sendChat("/me Stopped roulette cycle");
                     } else{
                         var d = new Date();
                         var mins = d.getMinutes();
                         if(mins > 30){
-                            TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, (60 - mins) * 60 * 1000);
+                            this.timer = window.setTimeout(rouletteCycler, (60 - mins) * 60 * 1000);
                         }else{
-                            TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, (30 - mins) * 60 * 1000);
+                            this.timer = window.setTimeout(rouletteCycler, (30 - mins) * 60 * 1000);
                         }
                         API.sendChat("/me Started roulette cycle");
                     }
