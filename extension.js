@@ -3,7 +3,7 @@
     //Change this to your GitHub username so you don't have to modify so many things.
     var fork = "hoihoi661";
 
-	API.sendChat("RETARDBOT ONLINE PLZ NO !KILLERINO");
+    API.sendChat("RETARDBOT ONLINE PLZ NO !KILLERINO");
     //Define our function responsible for extending the bot.
     function extend() {
         //If the bot hasn't been loaded properly, try again in 1 second(s).
@@ -47,39 +47,39 @@
                 }
             }
         };
-		
-		var TGH_rouletteCycleTimer = null;
-		bot.commands.rouletteCycle = {
-			command: 'roulettecycle',
-			rank: 'mod',
-			type: 'exact',
-			functionality: function (chat, cmd) {
-				if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-				if (!bot.commands.executable(this.rank, chat)) return void (0);
-				else {
-					function rouletteCycler(){
-						API.sendChat("!roulette");
-						TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, 30 * 60 * 1000);
-					}
-					if(TGH_rouletteCycleTimer != null){
-						clearTimeout(TGH_rouletteCycleTimer);
-						TGH_rouletteCycleTimer = null;
-						API.sendChat("/me Stopped roulette cycle");
-					} else{
-						var d = new Date();
-						var mins = d.getMinutes();
-						if(mins > 30){
-							TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, (60 - mins) * 60 * 1000);
-						}else{
-							TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, (30 - mins) * 60 * 1000);
-						}
-						API.sendChat("/me Started roulette cycle");
-					}
+        
+        var TGH_rouletteCycleTimer = null;
+        bot.commands.rouletteCycle = {
+            command: 'roulettecycle',
+            rank: 'mod',
+            type: 'exact',
+            functionality: function (chat, cmd) {
+                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                if (!bot.commands.executable(this.rank, chat)) return void (0);
+                else {
+                    function rouletteCycler(){
+                        API.sendChat("!roulette");
+                        TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, 30 * 60 * 1000);
+                    }
+                    if(TGH_rouletteCycleTimer != null){
+                        clearTimeout(TGH_rouletteCycleTimer);
+                        TGH_rouletteCycleTimer = null;
+                        API.sendChat("/me Stopped roulette cycle");
+                    } else{
+                        var d = new Date();
+                        var mins = d.getMinutes();
+                        if(mins > 30){
+                            TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, (60 - mins) * 60 * 1000);
+                        }else{
+                            TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, (30 - mins) * 60 * 1000);
+                        }
+                        API.sendChat("/me Started roulette cycle");
+                    }
                 }
-			}
-		}
-		
-		
+            }
+        }
+        
+        
         //Load the chat package again to account for any changes
         bot.loadChat();
 
