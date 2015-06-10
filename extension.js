@@ -2,14 +2,14 @@
     
     //Change this to your GitHub username so you don't have to modify so many things.
     var fork = "hoihoi661";
-		
+	
+	API.sendChat("RETARDBOT ONLINE PLZ NO !KILLERINO");
     //Define our function responsible for extending the bot.
     function extend() {
         //If the bot hasn't been loaded properly, try again in 1 second(s).
         if (!window.bot) {
             return setTimeout(extend, 1 * 1000);
         }
-		API.sendChat("RETARDBOT ONLINE PLZ NO !KILLERINO");
         //Precaution to make sure it is assigned properly.
         var bot = window.bot;
 
@@ -62,6 +62,7 @@
 			if (mins == 0 && secs == 0){
 				halfHour();
 			}
+			API.sendChat("Checked Time");
 		}
 		
 		function halfHour(){
