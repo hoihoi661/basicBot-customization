@@ -48,8 +48,9 @@
             }
         };
 		
+		var TGH_rouletteCycleTimer = null;
 		bot.commands.rouletteCycle = {
-			command: 'rouletteCycle',
+			command: 'roulettecycle',
 			rank: 'mod',
 			type: 'exact',
 			functionality: function (chat, cmd) {
@@ -58,16 +59,22 @@
 				else {
 					function rouletteCycler(){
 						API.sendChat("!roulette");
-						setTimeout(rouletteCycler, 30 * 60 * 1000);
+						TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, 30 * 60 * 1000);
 					}
-					var d = new Date();
-					var mins = d.getMinutes();
-					if(mins > 30){
-						setTimeout(rouletteCycler, (60 - mins) * 60 * 1000);
-					}else{
-						setTimeout(rouletteCycler, (30 - mins) * 60 * 1000);
+					if(TGH_rouletteCycleTimer != null){
+						clearTimeout(TGH_rouletteCycleTimer);
+						TGH_rouletteCycleTimer = null;
+						API.sendChat("/me Stopped roulette cycle");
+					} else{
+						var d = new Date();
+						var mins = d.getMinutes();
+						if(mins > 30){
+							TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, (60 - mins) * 60 * 1000);
+						}else{
+							TGH_rouletteCycleTimer = window.setTimeout(rouletteCycler, (30 - mins) * 60 * 1000);
+						}
+						API.sendChat("/me Started roulette cycle");
 					}
-                    API.sendChat("/me Started roulette cycle");
                 }
 			}
 		}
