@@ -47,7 +47,28 @@
                 }
             }
         };
+		
+		function checkTime() {
+			var time = new Date();
+			var mins = time.getMinutes();
+			mins = (59-mins) % 30;
+			var secs = time.getSeconds();
+			if (secs != 60){
+			secs = (59-secs) % 60;
+			} else {
+			secs = 00;
+			}
+			time = [Number(mins),Number(secs)];
+			if (mins == 0 && secs == 0){
+				halfHour();
+			}
+		}
+		
+		function halfHour(){
+			API.sendChat('!roulette');
+		}
 
+		setInterval(checkTime(), 60000);
         //Load the chat package again to account for any changes
         bot.loadChat();
 
