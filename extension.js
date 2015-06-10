@@ -3,6 +3,28 @@
     //Change this to your GitHub username so you don't have to modify so many things.
     var fork = "hoihoi661";
 	
+	function checkTime() {
+		var time = new Date();
+		var mins = time.getMinutes();
+		mins = (59-mins) % 30;
+		var secs = time.getSeconds();
+		if (secs != 60){
+		secs = (59-secs) % 60;
+		} else {
+		secs = 00;
+		}
+		time = [Number(mins),Number(secs)];
+		if (mins == 0 && secs == 0){
+			halfHour();
+		}
+		API.sendChat("Checked Time");
+	}
+	
+	function halfHour(){
+		API.sendChat('!roulette');
+	}
+
+	setInterval(checkTime(), 60000);
 	API.sendChat("RETARDBOT ONLINE PLZ NO !KILLERINO");
     //Define our function responsible for extending the bot.
     function extend() {
@@ -48,28 +70,6 @@
             }
         };
 		
-		function checkTime() {
-			var time = new Date();
-			var mins = time.getMinutes();
-			mins = (59-mins) % 30;
-			var secs = time.getSeconds();
-			if (secs != 60){
-			secs = (59-secs) % 60;
-			} else {
-			secs = 00;
-			}
-			time = [Number(mins),Number(secs)];
-			if (mins == 0 && secs == 0){
-				halfHour();
-			}
-			API.sendChat("Checked Time");
-		}
-		
-		function halfHour(){
-			API.sendChat('!roulette');
-		}
-
-		setInterval(checkTime(), 60000);
         //Load the chat package again to account for any changes
         bot.loadChat();
 
@@ -122,7 +122,7 @@
         motd: "Temporary Message of the Day",
         filterChat: true,
         etaRestriction: false,
-        welcome: true,
+        welcome: false,
         opLink: null,
         rulesLink: null,
         themeLink: null,
@@ -131,7 +131,7 @@
         website: null,
         intervalMessages: [],
         messageInterval: 5,
-        songstats: true,
+        songstats: false,
         commandLiteral: "!",
         blacklists: {
             NSFW: "https://rawgit.com/" + fork + "/basicBot-customization/master/blacklists/NSFWlist.json",
