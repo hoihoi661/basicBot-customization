@@ -73,7 +73,7 @@
 						}
 						API.sendChat("Checked Time");
 					}
-					setInterval(checkTime(), 10000);
+					setInterval(checkTime, 10000);
                     API.sendChat("/me Started roulette cycle");
                 }
 			}
