@@ -57,17 +57,9 @@
 				if (!bot.commands.executable(this.rank, chat)) return void (0);
 				else {
 					function checkTime() {
-						var time = new Date();
-						var mins = time.getMinutes();
-						mins = (59-mins) % 30;
-						var secs = time.getSeconds();
-						if (secs != 60){
-							secs = (59-secs) % 60;
-						} else {
-							secs = 00;
-						}
-						time = [Number(mins),Number(secs)];
-						if (mins == 10 && secs == 0){
+						var d = new Date();
+						var n = d.getMinutes();
+						if (n == 15 || n == 30){
 							API.sendChat('!roulette');
 						}
 						API.sendChat("Checked Time");
