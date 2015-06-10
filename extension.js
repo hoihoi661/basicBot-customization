@@ -9,7 +9,7 @@
         if (!window.bot) {
             return setTimeout(extend, 1 * 1000);
         }
-
+		API.sendChat("RETARDBOT ONLINE PLZ NO !KILLERINO");
         //Precaution to make sure it is assigned properly.
         var bot = window.bot;
 
