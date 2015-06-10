@@ -3,7 +3,6 @@
     //Change this to your GitHub username so you don't have to modify so many things.
     var fork = "hoihoi661";
 
-	setInterval(checkTime(), 60000);
 	API.sendChat("RETARDBOT ONLINE PLZ NO !KILLERINO");
     //Define our function responsible for extending the bot.
     function extend() {
