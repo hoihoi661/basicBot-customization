@@ -57,25 +57,25 @@
 				if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
 				if (!bot.commands.executable(this.rank, chat)) return void (0);
 				else {
+					function checkTime() {
+						var time = new Date();
+						var mins = time.getMinutes();
+						mins = (59-mins) % 30;
+						var secs = time.getSeconds();
+						if (secs != 60){
+							secs = (59-secs) % 60;
+						} else {
+							secs = 00;
+						}
+						time = [Number(mins),Number(secs)];
+						if (mins == 0 && secs == 0){
+							API.sendChat('!roulette');
+						}
+						API.sendChat("Checked Time");
+					}
 					setInterval(checkTime(), 10000);
                     API.sendChat("/me Started roulette cycle");
                 }
-				function checkTime() {
-					var time = new Date();
-					var mins = time.getMinutes();
-					mins = (59-mins) % 30;
-					var secs = time.getSeconds();
-					if (secs != 60){
-					secs = (59-secs) % 60;
-					} else {
-					secs = 00;
-					}
-					time = [Number(mins),Number(secs)];
-					if (mins == 0 && secs == 0){
-						API.sendChat('!roulette');
-					}
-					API.sendChat("Checked Time");
-				}
 			}
 		}
 		
