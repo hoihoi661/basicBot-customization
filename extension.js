@@ -56,15 +56,16 @@
 				if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
 				if (!bot.commands.executable(this.rank, chat)) return void (0);
 				else {
-					function checkTime() {
-						var d = new Date();
-						var n = d.getMinutes();
-						if (n == 15 || n == 30){
-							API.sendChat('!roulette');
-						}
-						API.sendChat("Checked Time");
+					function rouletteCycler(){
+						API.sendChat("!roulette");
+						setTimeout(rouletteCycler, 30 * 60 * 1000);
 					}
-					setInterval(checkTime, 10000);
+					mins = getMinutes();
+					if(mins > 30){
+						setTimeout(rouletteCycler, (60 - mins) * 60 * 1000);
+					}else{
+						setTimeout(rouletteCycler, (30 - mins) * 60 * 1000);
+					}
                     API.sendChat("/me Started roulette cycle");
                 }
 			}
