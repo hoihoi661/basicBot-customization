@@ -60,7 +60,8 @@
 						API.sendChat("!roulette");
 						setTimeout(rouletteCycler, 30 * 60 * 1000);
 					}
-					mins = getMinutes();
+					var d = new Date();
+					var mins = d.getMinutes();
 					if(mins > 30){
 						setTimeout(rouletteCycler, (60 - mins) * 60 * 1000);
 					}else{
