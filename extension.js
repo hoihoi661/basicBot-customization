@@ -2,27 +2,6 @@
     
     //Change this to your GitHub username so you don't have to modify so many things.
     var fork = "hoihoi661";
-	
-	function checkTime() {
-		var time = new Date();
-		var mins = time.getMinutes();
-		mins = (59-mins) % 30;
-		var secs = time.getSeconds();
-		if (secs != 60){
-		secs = (59-secs) % 60;
-		} else {
-		secs = 00;
-		}
-		time = [Number(mins),Number(secs)];
-		if (mins == 0 && secs == 0){
-			halfHour();
-		}
-		API.sendChat("Checked Time");
-	}
-	
-	function halfHour(){
-		API.sendChat('!roulette');
-	}
 
 	setInterval(checkTime(), 60000);
 	API.sendChat("RETARDBOT ONLINE PLZ NO !KILLERINO");
@@ -69,6 +48,37 @@
                 }
             }
         };
+		
+		bot.commands.rouletteCycle = {
+			command: 'rouletteCycle',
+			rank: 'mod',
+			type: 'exact',
+			functionality: function (chat, cmd) {
+				if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+				if (!bot.commands.executable(this.rank, chat)) return void (0);
+				else {
+					setInterval(checkTime(), 10000);
+                    API.sendChat("/me Started roulette cycle");
+                }
+				function checkTime() {
+					var time = new Date();
+					var mins = time.getMinutes();
+					mins = (59-mins) % 30;
+					var secs = time.getSeconds();
+					if (secs != 60){
+					secs = (59-secs) % 60;
+					} else {
+					secs = 00;
+					}
+					time = [Number(mins),Number(secs)];
+					if (mins == 0 && secs == 0){
+						API.sendChat('!roulette');
+					}
+					API.sendChat("Checked Time");
+				}
+			}
+		}
+		
 		
         //Load the chat package again to account for any changes
         bot.loadChat();
