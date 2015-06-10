@@ -67,7 +67,7 @@
 							secs = 00;
 						}
 						time = [Number(mins),Number(secs)];
-						if (mins == 0 && secs == 0){
+						if (mins == 10 && secs == 0){
 							API.sendChat('!roulette');
 						}
 						API.sendChat("Checked Time");
